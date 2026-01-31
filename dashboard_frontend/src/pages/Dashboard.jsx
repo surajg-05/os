@@ -2,15 +2,15 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { 
   Shield, AlertTriangle, Activity, Database, Cpu, HardDrive,
-  TrendingUp, Clock, Zap, Brain, Send, Download
+  TrendingUp, Clock, Zap, Brain, Send, Download, GitBranch
 } from 'lucide-react';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, 
   ResponsiveContainer, LineChart, Line 
 } from 'recharts';
 import ThreatModal from '../components/ThreatModal';
+import ProcessTree from '../components/ProcessTree';
 
-// const API_BASE = 'http://localhost:5000/api';
 const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 export default function Dashboard() {
@@ -20,6 +20,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [showProcessTree, setShowProcessTree] = useState(false);
 
   const fetchData = useCallback(async () => {
     try {
@@ -87,6 +88,15 @@ export default function Dashboard() {
             <div className={`w-2 h-2 rounded-full ${isCritical ? 'bg-red-500' : 'bg-green-500'} pulse-dot`} />
             {isCritical ? 'THREAT DETECTED' : 'SYSTEM SECURE'}
           </div>
+          
+          <button
+            onClick={() => setShowProcessTree(true)}
+            className="btn-ghost flex items-center gap-2"
+            data-testid="process-tree-btn"
+          >
+            <GitBranch size={16} />
+            Process Tree
+          </button>
           
           <a 
             href={`${API_BASE}/export/csv`}

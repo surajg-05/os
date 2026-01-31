@@ -9,7 +9,8 @@ import {
   ResponsiveContainer, PieChart, Pie, Cell, AreaChart, Area
 } from 'recharts';
 
-const API_BASE = 'http://localhost:5000/api';
+// const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 export default function Analytics() {
   const { token } = useAuth();

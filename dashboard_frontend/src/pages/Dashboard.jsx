@@ -10,7 +10,8 @@ import {
 } from 'recharts';
 import ThreatModal from '../components/ThreatModal';
 
-const API_BASE = 'http://localhost:5000/api';
+// const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 export default function Dashboard() {
   const { token } = useAuth();

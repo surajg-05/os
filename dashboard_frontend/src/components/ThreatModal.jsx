@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { Brain, X, AlertTriangle, Shield, Loader, Send } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5000/api';
+// const API_BASE = 'http://localhost:5000/api';
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:5000/api';
 
 export function ThreatModal({ event, onClose }) {
   const { token } = useAuth();
